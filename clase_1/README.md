@@ -143,6 +143,8 @@ void loop() {
 
 ## 🧭 Tarea (30–60 min fuera de clase): Semáforo **vial + peatonal**
 
+![Esquemático](semaforo.png)
+
 ### Requerimientos mínimos
 
 * Semáforo vehicular: **Rojo, Amarillo, Verde** (3 LEDs).
