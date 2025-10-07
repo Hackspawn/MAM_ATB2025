@@ -4,7 +4,7 @@ En este repositorio dejaré los códigos y archivos utilizados en las clases de 
 ### Clase #1:
 ![Esquemático](clase_1/semaforo.png)
 #### Bloque 1:
-- Presentación de la asignatura. Puede descargar el programa [aquí](clase_1/Aplicaciones_B_Perelli.pdf). 
+- Presentación de la asignatura. Puede descargar el programa [aquí](ATB02-1-1_2025-2.pdf). 
 - Revisión del calendario
 #### Bloque 2:
 - Breve explicación de los diferentes usos y significados de los bits.
