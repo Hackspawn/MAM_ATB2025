@@ -24,9 +24,9 @@ Al finalizar la clase, podrás:
 * 1 × Cable USB (según placa)
 * 1 × Protoboard
 * 3 × LEDs (rojo, amarillo, verde)
-* 3 × Resistencias **220–330 Ω** (limitadoras de corriente)
+* 3 × Resistencias **150, 130 y 120 Ω** (limitadoras de corriente)
 * Jumpers (M–M)
-* **Opcional (tarea):** 1 LED rojo peatonal + 1 LED verde peatonal + 2 resistencias 220–330 Ω + 1 pulsador (si implementas botón de cruce)
+* **Opcional (tarea):** 1 LED rojo peatonal + 1 LED verde peatonal + 2 resistencias 150–120 Ω + 1 pulsador (si implementas botón de cruce)
 
 > **Nota de voltajes**
 >
