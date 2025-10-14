@@ -10,7 +10,7 @@
 ---
 
 ## 🧠 Contenidos de la clase
-0. Revisión tarea semáforo.
+0. Revisión **tarea semáforo**.
 1. **Ejemplo 1 – Sonic Pi:** secuencia de notas MIDI en Ruby.  
 2. **Arduino:** lectura de sensores.  
 3. **Comunicación USB-MIDI:** librería `MIDI.h` y compatibilidad entre placas.
@@ -81,6 +81,8 @@ live_loop :midi_piano do
   synth :dark_ambience, note: note
 end
 ```
+**Importante**... consideren que el *monitor serial* de **arduino** debe quedar libre para mandar los mensajes a otro programa.
+Eso se traduce en cerrar el **arduino IDE**.
 
 ```cpp
 #include <MIDI.h>
@@ -128,7 +130,7 @@ void loop() {
 ---
 ## 🧪 Actividad práctica
 1. Programa tu melodía en Sonic Pi (Ejemplo 1).  
-2. Construye un controlador con Arduino (1 botón + 1 potenciómetro).  
+2. Construye un controlador con Arduino (Sensor a elección).  
 3. Envía notas vía MIDI USB hacia Sonic Pi.  
 
 ---
