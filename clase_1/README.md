@@ -167,5 +167,5 @@ void loop() {
 
 * **LED no enciende:** verifica orientación (ánodo a la resistencia/pin, cátodo a GND) y continuidad de la protoboard.
 * **Todos los LEDs encendidos débilmente:** falta **GND común**.
-* **ESP32/ESP8266 no sube el sketch:** selecciona la **placa** correcta y el **puerto** en el IDE; revisa drivers.
+* **Led de ilumina poco:** revisa la cantidad de Ohms de la **resistencia** (150Ω, 130Ω y 120Ω Ohms) y si está en **kΩ** el LED tendrá muy poca iluminación.
 * **Calentamiento o mal olor:** desconecta; revisa cortos y resistencias adecuadas (Ley de Ohm).
