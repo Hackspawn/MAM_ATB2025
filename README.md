@@ -15,3 +15,10 @@ En este repositorio dejaré los códigos y archivos utilizados en las clases de 
   - Recurso 2: calcular mediante ley de Ohm las resistencias para encender dichos LEDs para ello se utiliza [LED Calculator](https://ledcalculator.net/es).
   - Recuerde que las variables absolutas son aquellas que en su código se declaran fuera de los *void*.
   - Tarea #1: Terminar de sincronizar el semáforo vial agregando además un semáforo peatonal.
+
+### Clase #2:
+Exploramos los fundamentos del procesamiento de señales sonoras digitales y experimentamos con código de Sonic Pi para generar sonidos controlados por algoritmo.
+Este módulo incluye:
+- Ejemplos básicos en Sonic Pi: generación de tonos, escalas y transformaciones algorítmicas.
+- Análisis y comentarios del código para comprender conceptos de síntesis sonora.
+- Preparación conceptual para conectar estos sonidos con control físico (Arduino) y mensajería MIDI.
