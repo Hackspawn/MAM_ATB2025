@@ -1,83 +1,133 @@
-# Clase 2 — Controladores MIDI con Arduino (USB-MIDI + Sonic Pi)
+### Clase 2: Controladores MIDI con Arduino y Sonic Pi
+---
 
 ## 🎯 Objetivos de la clase
-- Comprender qué es **MIDI** y las diferencias entre **MIDI por USB** y **MIDI DIN (5 pines)**.  
-- Configurar el entorno para enviar **notas** y **control changes (CC)** mediante USB-MIDI.  
-- Construir un **controlador mínimo** (1 botón o 1 potenciómetro o 1 sensor de distancia) que controle un sintetizador en Sonic Pi.  
-- Analizar qué **placas Arduino** son más adecuadas para trabajar con MIDI por USB.
+- Comprender el funcionamiento del protocolo **MIDI** y su relación con **Sonic Pi** y **Arduino**.  
+- Aprender a **programar secuencias musicales** mediante listas de notas en Sonic Pi.  
+- Construir un **controlador físico** con Arduino que envíe mensajes MIDI vía USB.  
+- Experimentar con sensores y actuadores para generar control musical en tiempo real.
 
 ---
 
-## 🧰 Requisitos previos
-- **Arduino IDE** (versión 2.3 o superior).  
-- **Sonic Pi** o un DAW que reciba mensajes MIDI (Ableton Live, Reaper, Logic, etc.).  
-- Conocimientos básicos de electrónica: entradas digitales, analógicas y resistencias *pull-up*.
+## 🧠 Contenidos de la clase
+1. **Ejemplo 1 – Sonic Pi:** secuencia de notas MIDI en Ruby.  
+2. **Arduino:** lectura de sensores.  
+3. **Comunicación USB-MIDI:** librería `MIDI.h` y compatibilidad entre placas.
 
 ---
 
-## 🧩 Materiales
-- 1 botón (pulsador) *(opcional)*
-- 1 potenciómetro de 10kΩ *(opcional)*  
-- Jumpers, resistencias, protoboard  
-- **Placa con USB nativo** recomendada:  
-  *Arduino Leonardo / Micro / Pro Micro*, *Zero*, *MKR Zero*, *Due*, *Nano 33 IoT* o *BLE*
+## 🎹 Ejemplo 1 – Sonic Pi: Lista de notas MIDI y secuencia musical
 
-> 💡 **Nota:** Arduino UNO R3 no tiene USB nativo.  
-> Puede funcionar mediante **HIDUINO** (flasheando el chip 16U2) o con el software **Hairless MIDI<->Serial Bridge**,  
-> pero no es la opción más sencilla para principiantes.  
-> El **UNO R4** todavía no cuenta con soporte estable para MIDIUSB directo.
+### Código base
+```ruby
+use_bpm 220
+use_synth :pulse
+use_synth_defaults sustain: 0.08, release: 0.12, amp: 1.2
+
+# Lista intercalada [nota_midi, duración_unidades]
+notes_and_durations = [
+  76, 12, 76, 12, 20, 12, 76, 12, 20, 12, 72, 12, 76, 12, 20, 12,
+  79, 12, 20, 36, 67, 12, 20, 36, 72, 12, 20, 24, 67, 12, 20, 24,
+  64, 12, 20, 24, 69, 12, 20, 12, 71, 12, 20, 12, 70, 12, 69, 12,
+  20, 12, 67, 16, 76, 16, 79, 16, 81, 12, 20, 12, 77, 12, 79, 12,
+  20, 12, 76, 12, 20, 12, 72, 12, 74, 12, 71, 12, 20, 24
+]
+
+sequence = notes_and_durations.each_slice(2).to_a
+
+define :play_sequence do |seq, factor: 0.07, transpose: 0|
+  seq.each do |n, d|
+    t = d * factor
+    if n == :r
+      sleep t
+    else
+      play n + transpose
+      sleep t
+    end
+  end
+end
+
+live_loop :mario_theme do
+  play_sequence sequence, factor: 0.07, transpose: 0
+end
+```
 
 ---
 
-## 🧠 1. Instalación y librerías
-
-### Opción A — Librería `MIDIUSB` (oficial y directa)
-- Instala desde *Library Manager* → **MIDIUSB**  
-- Compatible con placas con USB nativo (Leonardo, Micro, Zero, MKR, Due)
-
-### Opción B — Librería `Control Surface` (más intuitiva)
-- Instala desde *Library Manager* → **Control Surface** (de tttapa)  
-- Simplifica el uso de entradas, potenciómetros, botones, etc.
-
-> Si usas **UNO R3** o una placa sin USB nativo, instala **Hairless MIDI<->Serial Bridge** en tu computadora.  
-> Este programa “traduce” los mensajes Serial a MIDI.
-
----
-
-## 🧮 2. Ejemplo 1: Envío de notas MIDI con `MIDIUSB`
-
+## 🔧 Parte 2 – Arduino: sensores, actuadores y flujo de datos
 ```cpp
-#include "MIDIUSB.h"
-
-void noteOn(byte channel, byte note, byte velocity) {
-  midiEventPacket_t noteOn = {0x09, (byte)(0x90 | (channel & 0x0F)), note, velocity};
-  MidiUSB.sendMIDI(noteOn);
-  MidiUSB.flush();
-}
-
-void noteOff(byte channel, byte note, byte velocity) {
-  midiEventPacket_t noteOff = {0x08, (byte)(0x80 | (channel & 0x0F)), note, velocity};
-  MidiUSB.sendMIDI(noteOff);
-  MidiUSB.flush();
-}
-
-const int BUTTON = 2;
-const byte CHANNEL = 0;
-const byte NOTE = 60; // C3
-bool pressed = false;
-
 void setup() {
-  pinMode(BUTTON, INPUT_PULLUP);
+  // Comunicación seria a 9600 baudios
+  Serial.begin(9600);
 }
 
 void loop() {
-  bool now = digitalRead(BUTTON) == LOW;
-  if (now && !pressed) {
-    noteOn(CHANNEL, NOTE, 100);
-    pressed = true;
-  }
-  if (!now && pressed) {
-    noteOff(CHANNEL, NOTE, 0);
-    pressed = false;
-  }
+  // Leemos la entrada analógica 0 :
+  int ADC_SHARP = analogRead(A0);
+  Serial.println(ADC_SHARP);
+  delay(10);
 }
+```
+---
+
+## 🎛️ Parte 3 – Comunicación USB-MIDI con `MIDIUSB.h`
+```ruby
+# Welcome to Sonic Pi
+live_loop :midi_piano do
+  #ren sync recuerden poner la ruta del dispositivo midi en note_on
+  note, velocity = sync "/midi:arduino_zero:2/note_on"
+  #en synth eligen el sintetizador que desean
+  synth :dark_ambience, note: note
+end
+```
+
+```cpp
+#include <MIDI.h>
+
+// Crear una instancia MIDI por defecto (usa Serial a 31250 baudios)
+MIDI_CREATE_DEFAULT_INSTANCE();
+
+void setup() {
+  Serial.begin(31250);  // Velocidad MIDI estándar
+  MIDI.begin(MIDI_CHANNEL_OMNI); // Escucha todos los canales
+}
+
+void loop() {
+  int ADC_SHARP_A = analogRead(A0);
+
+  // Mapear el valor del sensor a una nota MIDI
+  int note = map(ADC_SHARP_A, 0, 1023, 40, 80); // evita extremos como 0 y 127
+
+  // Enviar nota ON
+  MIDI.sendNoteOn(note, 64, 1);  // Nota, Velocidad, Canal
+  delay(64);
+
+  // Enviar nota OFF
+  MIDI.sendNoteOff(note, 64, 1);
+  delay(100);
+}
+```
+
+---
+
+## ⚙️ Tabla de compatibilidad de placas Arduino para USB-MIDI
+
+| Placa | MCU | USB nativo | ¿MIDIUSB directo? | Librería típica | Dificultad | Comentarios |
+|-------|-----|-------------|------------------|----------------|-------------|--------------|
+| **Leonardo / Micro / Pro Micro** | ATmega32u4 | ✅ | ✅ | MIDIUSB / Control Surface | 🔹 Baja | Ideal para comenzar. |
+| **Zero** | SAMD21 | ✅ | ✅ | MIDIUSB / Control Surface | 🔹 Baja | 32 bits, estable. |
+| **MKR Zero / MKR1000** | SAMD21 | ✅ | ✅ | MIDIUSB / Control Surface | 🔹 Baja | Ideal para proyectos con SD. |
+| **Nano 33 IoT / BLE** | SAMD21 / nRF52840 | ✅ | ✅ | Control Surface | 🔸 Media | Compatible con BLE-MIDI. |
+| **Due** | SAM3X8E | ✅ | ✅ | MIDIUSB / Control Surface | 🔸 Media | 3.3 V. |
+| **UNO R4 (Minima / WiFi)** | Renesas RA4M1 | ✅ | ⚠️ Parcial | (Solo Serial MIDI) | 🔸 Media | Ecosistema en desarrollo. |
+| **UNO R3** | ATmega328P + 16U2 | ❌ | ❌ | — | 🔴 Alta | Requiere HIDUINO o Hairless MIDI Bridge. |
+| **Arduino 101** | Intel Curie | ✅ | ⚠️ Parcial | CurieMIDI (experimental) | 🔸 Media | Soporte limitado. |
+| **Teensy (extra)** | ARM Cortex-M | ✅ | ✅ | Teensyduino | 🔹 Baja | Excelente compatibilidad. |
+
+---
+## 🧪 Actividad práctica
+1. Programa tu melodía en Sonic Pi (Ejemplo 1).  
+2. Construye un controlador con Arduino (1 botón + 1 potenciómetro).  
+3. Envía notas vía MIDI USB hacia Sonic Pi.  
+
+---
