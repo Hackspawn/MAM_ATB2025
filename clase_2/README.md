@@ -10,6 +10,7 @@
 ---
 
 ## 🧠 Contenidos de la clase
+0. Revisión tarea semáforo.
 1. **Ejemplo 1 – Sonic Pi:** secuencia de notas MIDI en Ruby.  
 2. **Arduino:** lectura de sensores.  
 3. **Comunicación USB-MIDI:** librería `MIDI.h` y compatibilidad entre placas.
@@ -54,7 +55,7 @@ end
 
 ---
 
-## 🔧 Parte 2 – Arduino: sensores, actuadores y flujo de datos
+## 🔧 Parte 2 – Arduino: sensores y flujo de datos (SHARP GP2Y0A21 o GP2Y0A02)
 ```cpp
 void setup() {
   // Comunicación seria a 9600 baudios
