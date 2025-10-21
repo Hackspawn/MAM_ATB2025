@@ -14,6 +14,8 @@
 
 ## 🧠 Introducción
 
+![Esquema del circuito HC-SR04](esquema_1.png)
+
 Los sensores de distancia permiten medir la **proximidad de objetos** utilizando diferentes principios físicos.  
 - El **HC-SR04** mide distancia mediante **ondas ultrasónicas**: envía un pulso y mide el tiempo que tarda en regresar el eco.  
 - Los **SHARP GP2Y0A21 / GP2Y0A02** utilizan **infrarrojos**: emiten un haz de luz y calculan la distancia a partir del reflejo.
