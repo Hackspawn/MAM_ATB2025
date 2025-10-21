@@ -80,7 +80,6 @@ Serial.begin(9600);
 ```
 ---
 ### ⚡ Velocidades en Baudios — Referencia por Placa y Proyecto
-### Aplicaciones Tecnológicas III
 
 ---
 
