@@ -83,9 +83,7 @@ La curva **Voltaje vs Distancia** del GP2Y0A02 es no lineal. La práctica común
 2. Para cada punto, captura el **ADC promedio** (usa el código base).  
 3. Ajusta en tu herramienta favorita (Excel, Python, etc.) una función del tipo:
 
-\[
-\text{dist\_cm} \approx a \cdot \left(\text{ADC}\right)^{b} + c
-\]
+dist_cm≈a⋅(ADC)b+c
 
 o una forma **razón/inversa** (depende de tu ajuste).  
 4. Lleva esos **coeficientes** al Arduino.
