@@ -25,7 +25,7 @@ Sensor infrarrojo de distancia **SHARP GP2Y0A02YK0F** (salida analógica). Este 
 | **GND** | **GND** |
 | **VCC** | **5V** |
 
-![Conexión del SHARP GP2Y0A02 con Arduino](sharp-arduino.png)
+![Conexión del SHARP GP2Y0A02 con Arduino](sharp_arduino.png)
 > Conectar un **condensador de 10 µF o mayor** entre **Vcc** y **GND** lo más cerca del sensor reduce el ruido de la fuente.
 
 ---
