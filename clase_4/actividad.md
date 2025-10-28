@@ -8,7 +8,7 @@ En esta actividad trabajamos con el sensor de temperatura **TMP36** conectado a 
    Comenzamos distinguiendo entre los protocolos **I2C** e **SPI**. En esta actividad utilizamos el protocolo **SPI**, ya que es el requerido por la mayoría de los módulos microSD.
 
 2. **Preparación de la tarjeta microSD**  
-   Se utiliza una tarjeta microSD formateada en **FAT32**. En ella se crea automáticamente un archivo de texto plano llamado `data.txt` que almacenará las lecturas del sensor.
+   Se utiliza una tarjeta microSD [formateada](Sist_Arch.pdf) en **FAT32**. En ella se crea automáticamente un archivo de texto plano llamado `data.txt` que almacenará las lecturas del sensor.
 
 3. **Lectura del sensor TMP36**  
    El TMP36 está conectado al pin **A0** del Arduino. Se realiza una lectura analógica con `analogRead()`, que se convierte a voltaje y luego a temperatura:
