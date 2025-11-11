@@ -24,6 +24,7 @@ Este ejercicio permitió comprender la lectura, escritura y estructuración de d
 Una vez finalizadas las rotaciones entre mesas, se introdujo la **Raspberry Pi** como **microcomputador** aplicado a proyectos de **Artes Mediales**, destacando sus diferencias respecto a los **microcontroladores Arduino**.  
 
 Se revisaron las características de su arquitectura, las funciones de los **pines GPIO**, y se realizó un **tutorial de instalación del sistema operativo Raspberry Pi OS**.
+
 ![Mapa de Pines GPIO](GPIO-Pinout-Diagram-2.png)
 
 ---
@@ -31,6 +32,7 @@ Se revisaron las características de su arquitectura, las funciones de los **pin
 #### ⚙️ Configuración inicial del sistema  
 
 El videotutorial se encuentra disponible en la carpeta Drive del Curso. 
+
 ![Explicación de Configuración VNC](Raspi_vid.png)
 
 El proceso de configuración se llevó a cabo mediante la herramienta `raspi-config`, ejecutada desde la terminal con el siguiente comando:  
