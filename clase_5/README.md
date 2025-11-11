@@ -33,7 +33,7 @@ Se revisaron las características de su arquitectura, las funciones de los **pin
 
 El videotutorial se encuentra disponible en la carpeta Drive del Curso. 
 
-![Explicación de Configuración VNC](Raspi_vid.png)
+![Explicación de Configuración VNC](Rasp_vid.png)
 
 El proceso de configuración se llevó a cabo mediante la herramienta `raspi-config`, ejecutada desde la terminal con el siguiente comando:  
 
