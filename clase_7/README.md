@@ -2,7 +2,7 @@
 
 Tiras LED Direccionables + Audio Reactivo con WLED + ESP32
 
-En esta clase aprenderemos a controlar una tira LED WS2812B mediante una **ESP32 WROOM** y hacerla **reaccionar al sonido** usando el **micrófono MAX4466** y el firmware **WLED 0.13.3**.
+En esta clase aprenderemos a controlar una tira LED WS2812B mediante una **ESP32 WROOM** y hacerla **reaccionar al sonido** usando el **micrófono MAX4466** y el firmware **WLED 0.15.1**.
 
 ---
 
