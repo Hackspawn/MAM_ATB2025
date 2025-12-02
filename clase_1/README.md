@@ -1,10 +1,5 @@
 # Clase 1 · Introducción a Arduino y Placas Afines
 
-**Curso:** Aplicaciones Tecnológicas en Artes Mediales
-**Duración:** 1 sesión (~105 min)
-**Público:** Estudiantes con poca o nula experiencia previa
-**Placas objetivo:** Arduino UNO R3/R4 WiFi, Arduino Zero, Arduino 101, ESP32, ESP8266 (NodeMCU)
-
 ---
 
 ## 🎯 Resultados de aprendizaje
