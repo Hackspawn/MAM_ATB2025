@@ -44,7 +44,7 @@ En esta clase aprenderemos a controlar una tira LED WS2812B mediante una **ESP32
 |---------|----------------|
 | VCC     | 3V3            |
 | GND     | GND            |
-| OUT     | GPIO 35        |
+| OUT     | GPIO 33        |
 
 > 🔧 **IMPORTANTE:** En WLED, debes **cambiar el pin de entrada de audio de 36 a 35**.
 
