@@ -78,9 +78,10 @@ En esta clase aprenderemos a controlar una tira LED WS2812B mediante una **ESP32
 ## 🎧 Activar modo Audio Reactivo
 
 1. Entra a la IP local de WLED (desde tu red WiFi).
-2. Ve a **Config > Audio Reactive**.
-3. Cambia el pin de entrada de audio a **GPIO 35**.
-4. Guarda cambios y reinicia.
+2. Ve a **Config > Usermodes**.
+3. Baja hasta **AudioReactive** y haz click en **Enabled** y **Add Palettes**. 
+4. Luego, en **Analigmic**, cambia el pin de entrada de audio a **GPIO 33** (Ahí debe estar conectado el OUT del MAX4466.
+5. Guarda cambios y reinicia.
 
 ---
 
